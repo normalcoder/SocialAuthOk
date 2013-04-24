@@ -3,11 +3,11 @@
 #import "AppOpenUrlNotification.h"
 
 @interface SocialAuthOkSuccessObject ()
-
 @property (strong, nonatomic) NSString * authToken;
 @property (strong, nonatomic) NSString * userID;
-
 @end
+
+bool working;
 
 @implementation SocialAuthOkSuccessObject
 
@@ -78,7 +78,7 @@
              failure:(void (^)(NSError *))failure {
     self.success = success;
     self.failure = failure;
-    
+    working = YES;
     self.api =
     [[Odnoklassniki alloc]
      initWithAppId:[[NSBundle mainBundle].infoDictionary objectForKey:@"OdnoklassnikiAppID"]
@@ -143,12 +143,15 @@
 #pragma mark -
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification {
+    if (working)
+        self.failure(nil);
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification {
 }
 
 - (void)applicationDidOpenUrl:(NSNotification *)notification {
+    working = NO;
 	[OKSession.activeSession handleOpenURL:
      [[notification userInfo] objectForKey:AppOpenUrlNotificationUserInfoKey]];
 }
