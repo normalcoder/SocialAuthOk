@@ -28,7 +28,7 @@ bool working;
 
 @end
 
-@interface SocialAuthOk () <OKSessionDelegate>
+@interface SocialAuthOk () <OKSessionDelegate, OKRequestDelegate>
 
 @property (strong, nonatomic) Odnoklassniki * api;
 @property (strong, nonatomic) void (^success)(SocialAuthOkSuccessObject *);
@@ -79,6 +79,7 @@ bool working;
     self.success = success;
     self.failure = failure;
     working = YES;
+    
     self.api =
     [[Odnoklassniki alloc]
      initWithAppId:[[NSBundle mainBundle].infoDictionary objectForKey:@"OdnoklassnikiAppID"]
@@ -90,6 +91,22 @@ bool working;
 
 - (void)logoutFinish:(void (^)())finish {
     [self.api logout];
+}
+
+- (void)shareLink:(NSString*)url withMessage:(NSString*)message success:(void (^)(SocialAuthOkSuccessObject*))success failure:(void (^)(NSError*))failure {
+    self.success = success;
+    self.failure = failure;
+    working = YES;
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:message forKey:@"comment"];
+    [params setObject:url forKey:@"linkUrl"];
+
+	OKRequest *newRequest = [Odnoklassniki requestWithMethodName:@"share.addLink"
+													   andParams:params
+												   andHttpMethod:@"GET"
+													 andDelegate:self];
+	[newRequest load];
 }
 
 #pragma mark -
@@ -138,6 +155,7 @@ bool working;
 }
 
 - (void)request:(OKRequest *)request didFailWithError:(NSError *)error {
+    self.failure(error);
 }
 
 #pragma mark -

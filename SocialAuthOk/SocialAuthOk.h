@@ -18,8 +18,9 @@ typedef NS_ENUM(NSInteger, SocialAuthOkAuthType) {
 
 + (instancetype)sharedInstance;
 
-- (void)loginSuccess:(void (^)(SocialAuthOkSuccessObject *))success
-             failure:(void (^)(NSError *))failure;
+- (void)loginSuccess:(void (^)(SocialAuthOkSuccessObject *))success failure:(void (^)(NSError *))failure;
+
+- (void)shareLink:(NSString*)url withMessage:(NSString*)message success:(void (^)(SocialAuthOkSuccessObject *))success failure:(void (^)(NSError *))failure;
 
 - (void)logoutFinish:(void (^)())finish;
 
