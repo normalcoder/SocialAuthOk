@@ -143,8 +143,10 @@ bool working;
 #pragma mark -
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification {
-    if (working)
+    if (working) {
         self.failure(nil);
+        working = NO;
+    }
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification {
@@ -152,8 +154,7 @@ bool working;
 
 - (void)applicationDidOpenUrl:(NSNotification *)notification {
     working = NO;
-	[OKSession.activeSession handleOpenURL:
-     [[notification userInfo] objectForKey:AppOpenUrlNotificationUserInfoKey]];
+	[OKSession.activeSession handleOpenURL:[[notification userInfo] objectForKey:AppOpenUrlNotificationUserInfoKey]];
 }
 
 @end
