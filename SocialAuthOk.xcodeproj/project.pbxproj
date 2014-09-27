@@ -13,7 +13,7 @@
 		7F4ACF6D171C548800F1776F /* OKRequestConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4ACF48171C548800F1776F /* OKRequestConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7F4ACF6E171C548800F1776F /* OKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4ACF4A171C548800F1776F /* OKSession.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7F4ACF6F171C548800F1776F /* OKTokenCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4ACF4C171C548800F1776F /* OKTokenCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		7F4ACF70171C548800F1776F /* OKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4ACF4E171C548800F1776F /* OKUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7F4ACF70171C548800F1776F /* OKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4ACF4E171C548800F1776F /* OKUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		7FA135D4171BF9E8004804C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA135D3171BF9E8004804C0 /* Foundation.framework */; };
 		7FA135D9171BF9E8004804C0 /* SocialAuthOk.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7FA135D8171BF9E8004804C0 /* SocialAuthOk.h */; };
 		7FA135DB171BF9E8004804C0 /* SocialAuthOk.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA135DA171BF9E8004804C0 /* SocialAuthOk.m */; };
